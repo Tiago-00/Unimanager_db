@@ -1,36 +1,44 @@
 package pt.iade.unimanager_db.models;
 
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "departamentos")
 public class Department {
-    private int id;
-    private String nome;
-    private char sigla;
-    private ArrayList<Unit>units;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "dep_id")
+  private int id;
 
-   
-    public  Department(int id, String nome, char sigla, ArrayList<Unit> units) {
-        this.id = id;
-        this.nome = nome;
-        this.sigla = sigla;
-        this.units = units;
-    }
+  @Column(name = "dep_nome")
+  private String name;
 
+  @Column(name = "dep_sigla")
+  private String initials;
 
-    public int getId() {
-        return id;
-    }
+  public Department() {
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public Department(int id, String name, String initials) {
+    this.id = id;
+    this.name = name;
+    this.initials = initials;
+  }
 
-    public char getSigla() {
-        return sigla;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public ArrayList<Unit> getUnits() {
-        return units;
-    }
+  public String getName() {
+    return name;
+  }
 
+  public String getInitials() {
+    return initials;
+  }
 }

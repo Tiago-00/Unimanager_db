@@ -1,6 +1,6 @@
 package pt.iade.unimanager_db.models;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,37 +9,65 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity @Table(name ="disciplinas")
+@Entity
+@Table(name = "disciplinas")
 public class Unit {
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name="dis_id") 
-            private int id;
-        @Column(name="dis_nome") 
-            private String nome;
-        @Column(name="dis_creditos")
-            private int credits;
-        @OneToMany 
-        @JoinColumn(name="pla_dis_id")
-        private List<Plan> plans;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "dis_id")
+  private int id;
 
-public Unit() {}
+  @Column(name = "dis_nome")
+  private String name;
 
-   
-    public int getId() {
-        return id;
-    }
+  @Column(name = "dis_creditos")
+  private int credits;
 
-    public String getNome() {
-        return nome;
-    }
+  @OneToMany
+  @JoinColumn(name = "pla_dis_id")
+  @JsonIgnoreProperties("enrolments")
+  private List<Plan> plans = new ArrayList<>();
 
-    public int getCreditos() {
-        return credits;
-    }
+  @ManyToOne
+  @JoinColumn(name = "dis_dep_id")
+  private Department department;
 
+  public Unit() {
+  }
+
+  public Unit(int id, String name, int credits) {
+    this.id = id;
+    this.name = name;
+    this.credits = credits;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getCredits() {
+    return credits;
+  }
+
+  public List<Plan> getPlans() {
+    return plans;
+  }
+
+  public Department getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
 }
