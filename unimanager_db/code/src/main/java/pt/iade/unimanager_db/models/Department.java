@@ -2,18 +2,18 @@ package pt.iade.unimanager_db.models;
 
 import java.util.ArrayList;
 
-public class Departamentos {
+public class Department {
     private int id;
     private String nome;
     private char sigla;
-    private ArrayList<Disciplinas>disciplinas;
+    private ArrayList<Unit>units;
 
    
-    public Departamentos(int id, String nome, char sigla, ArrayList<Disciplinas> disciplinas) {
+    public  Department(int id, String nome, char sigla, ArrayList<Unit> units) {
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
-        this.disciplinas = disciplinas;
+        this.units = units;
     }
 
 
@@ -29,9 +29,8 @@ public class Departamentos {
         return sigla;
     }
 
-    public ArrayList<Disciplinas> getDisciplinas() {
-        return disciplinas;
+    public ArrayList<Unit> getUnits() {
+        return units;
     }
-
 
 }

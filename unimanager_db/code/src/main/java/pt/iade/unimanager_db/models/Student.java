@@ -4,25 +4,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class Alunos {
+public class Student {
     private int id;
     private String nome;
     private String local;
     private LocalDate dnsc;
     private char sexo;
     private String email;
-    private ArrayList<Inscricoes>inscricoes;
+    private ArrayList<Enrolment>enrolments;
 
     
-    public Alunos(int id, String nome, String local, LocalDate dnsc, char sexo, String email,
-            ArrayList<Inscricoes> inscricoes) {
+    public Student(int id, String nome, String local, LocalDate dnsc, char sexo, String email,
+            ArrayList<Enrolment> enrolments) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.dnsc = dnsc;
         this.sexo = sexo;
         this.email = email;
-        this.inscricoes = inscricoes;
+        this.enrolments = enrolments;
     }
 
 
@@ -50,11 +50,8 @@ public class Alunos {
         return email;
     }
 
-    public ArrayList<Inscricoes> getInscricoes() {
-        return inscricoes;
+    public ArrayList<Enrolment> getEnrolments() {
+        return enrolments;
     }
-
-
-
   
 }

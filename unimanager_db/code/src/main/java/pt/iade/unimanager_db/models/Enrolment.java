@@ -2,22 +2,22 @@ package pt.iade.unimanager_db.models;
 
 import java.time.LocalDate;
 
-public class Inscricoes {
+public class Enrolment {
     
     private int id;
-    private Alunos alunos;
-    private Cursos cursos;
-    private Disciplinas disciplinas;
+    private Student students;
+    private Course courses;
+    private Unit units;
     private LocalDate data_inscricao;
     private LocalDate data_avaliacao;
     private double nota;
 
-    public Inscricoes(int id, Alunos alunos, Cursos cursos, Disciplinas disciplinas, LocalDate data_inscricao,
+    public Enrolment(int id, Student students, Course courses, Unit units, LocalDate data_inscricao,
             LocalDate data_avaliacao, double nota) {
         this.id = id;
-        this.alunos = alunos;
-        this.cursos = cursos;
-        this.disciplinas = disciplinas;
+        this.students = students;
+        this.courses = courses;
+        this.units = units;
         this.data_inscricao = data_inscricao;
         this.data_avaliacao = data_avaliacao;
         this.nota = nota;
@@ -27,16 +27,16 @@ public class Inscricoes {
         return id;
     }
 
-    public Alunos getAlunos() {
-        return alunos;
+    public Student getStudents() {
+        return students;
     }
 
-    public Cursos getCursos() {
-        return cursos;
+    public Course getCourses() {
+        return courses;
     }
 
-    public Disciplinas getDisciplinas() {
-        return disciplinas;
+    public Unit getUnits() {
+        return units;
     }
 
     public LocalDate getData_inscricao() {
@@ -50,5 +50,8 @@ public class Inscricoes {
       public double getNota() {
         return nota;
     }
+
+
+
     
 }
