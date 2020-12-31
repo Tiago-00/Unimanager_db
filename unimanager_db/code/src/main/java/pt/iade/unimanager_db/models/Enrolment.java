@@ -2,56 +2,137 @@ package pt.iade.unimanager_db.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import pt.iade.unimanager_db.models.ids.EnrolmentId;
+
+
+
+@Entity
+@Table(name = "inscricoes")
+@IdClass(EnrolmentId.class)
 public class Enrolment {
-    
-    private int id;
-    private Student students;
-    private Course courses;
-    private Unit units;
-    private LocalDate data_inscricao;
-    private LocalDate data_avaliacao;
-    private double nota;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ins_id")
+  private int id;
 
-    public Enrolment(int id, Student students, Course courses, Unit units, LocalDate data_inscricao,
-            LocalDate data_avaliacao, double nota) {
-        this.id = id;
-        this.students = students;
-        this.courses = courses;
-        this.units = units;
-        this.data_inscricao = data_inscricao;
-        this.data_avaliacao = data_avaliacao;
-        this.nota = nota;
-    }
+  @Id
+  @Column(name = "ins_alu_id")
+  @JsonIgnore
+  private int studentId;
 
-    public int getId() {
-        return id;
-    }
+  @ManyToOne
+  @MapsId("studentId")
+  @JoinColumn(name = "ins_alu_id")
+  @JsonIgnoreProperties("enrolments")
+  private Student student;
 
-    public Student getStudents() {
-        return students;
-    }
+  @Id
+  @Column(name = "ins_pla_cur_id")
+  @JsonIgnore
+  private int courseId;
 
-    public Course getCourses() {
-        return courses;
-    }
+  @ManyToOne
+  @MapsId("courseId")
+  @JoinColumn(name = "ins_pla_cur_id")
+  @JsonIgnoreProperties("plans")
+  private Course course;
 
-    public Unit getUnits() {
-        return units;
-    }
+  @Id
+  @Column(name = "ins_pla_dis_id")
+  @JsonIgnore
+  private int unitId;
 
-    public LocalDate getData_inscricao() {
-        return data_inscricao;
-    }
+  @ManyToOne
+  @MapsId("unitId")
+  @JoinColumn(name = "ins_pla_dis_id")
+  @JsonIgnoreProperties("plans")
+  private Unit unit;
 
-    public LocalDate getData_avaliacao() {
-        return data_avaliacao;
-    }
+  @Column(name = "ins_dt_inscricao")
+  private LocalDate enrolmentDate;
 
-      public double getNota() {
-        return nota;
-    }
+  @Column(name = "ins_dt_avaliacao")
+  private LocalDate evaluationDate;
 
+  @Column(name = "ins_nota")
+  private Double grade;
 
+  public Enrolment() {
+  }
 
-    
+  public Enrolment(int id, Student student, Course course, Unit unit, LocalDate enrolmentDate,
+      LocalDate evaluationDate) {
+    this.id = id;
+    this.student = student;
+    this.course = course;
+    this.unit = unit;
+    this.enrolmentDate = enrolmentDate;
+    this.evaluationDate = evaluationDate;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public int getStudentId() {
+    return studentId;
+  }
+
+  public Student getStudent() {
+    return student;
+  }
+
+  public int getCourseId() {
+    return courseId;
+  }
+
+  public Course getCourse() {
+    return course;
+  }
+
+  public int getUnitId() {
+    return unitId;
+  }
+
+  public Unit getUnit() {
+    return unit;
+  }
+
+  public LocalDate getEnrolmentDate() {
+    return enrolmentDate;
+  }
+
+  public void setEnrolmentDate(LocalDate enrolmentDate) {
+    this.enrolmentDate = enrolmentDate;
+  }
+
+  public LocalDate getEvaluationDate() {
+    return evaluationDate;
+  }
+
+  public void setEvaluationDate(LocalDate evaluationDate) {
+    this.evaluationDate = evaluationDate;
+  }
+
+  public Double getGrade() {
+    return grade;
+  }
+
+  public void setGrade(Double grade) {
+    this.grade = grade;
+  }
 }

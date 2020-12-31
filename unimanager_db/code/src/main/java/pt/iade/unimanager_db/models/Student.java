@@ -2,56 +2,98 @@ package pt.iade.unimanager_db.models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Table(name = "alunos")
 public class Student {
-    private int id;
-    private String nome;
-    private String local;
-    private LocalDate dnsc;
-    private char sexo;
-    private String email;
-    private ArrayList<Enrolment>enrolments;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "alu_id")
+  private int id;
 
-    
-    public Student(int id, String nome, String local, LocalDate dnsc, char sexo, String email,
-            ArrayList<Enrolment> enrolments) {
-        this.id = id;
-        this.nome = nome;
-        this.local = local;
-        this.dnsc = dnsc;
-        this.sexo = sexo;
-        this.email = email;
-        this.enrolments = enrolments;
-    }
+  @Column(name = "alu_nome")
+  private String name;
 
+  @Column(name = "alu_local")
+  private String address;
 
-    public int getId() {
-        return id;
-    }
+  @Column(name = "alu_dnsc")
+  private LocalDate birthDate;
 
-    public String getNome() {
-        return nome;
-    }
+  @Column(name = "alu_sexo")
+  private char gender;
 
-    public String getLocal() {
-        return local;
-    }
+  @Column(name = "alu_email")
+  private String email;
 
-    public LocalDate getDnsc() {
-        return dnsc;
-    }
+  @ManyToOne
+  @JoinColumn(name = "alu_cur_id")
+  private Course course;
 
-    public char getSexo() {
-        return sexo;
-    }
+  @OneToMany
+  @JoinColumn(name = "ins_alu_id")
+  @JsonIgnoreProperties("enrolments")
+  private List<Enrolment> enrolments = new ArrayList<>();
 
-    public String getEmail() {
-        return email;
-    }
+  public Student() {
+  }
 
-    public ArrayList<Enrolment> getEnrolments() {
-        return enrolments;
-    }
-  
+  public Student(int id, String name, String address, LocalDate birthDate, char gender, String email) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.birthDate = birthDate;
+    this.gender = gender;
+    this.email = email;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public LocalDate getBirthDate() {
+    return birthDate;
+  }
+
+  public char getGender() {
+    return gender;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public Course getCourse() {
+    return course;
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
+  }
+
+  public List<Enrolment> getEnrolments() {
+    return enrolments;
+  }
 }
+
