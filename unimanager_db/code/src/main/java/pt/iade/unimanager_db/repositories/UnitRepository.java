@@ -3,9 +3,12 @@ package pt.iade.unimanager_db.repositories;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import pt.iade.unimanager_db.models.Unit;
+import pt.iade.unimanager_db.models.Views.UnitPlanView;
+
 
 public interface UnitRepository extends CrudRepository<Unit, Integer> {
 

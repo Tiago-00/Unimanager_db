@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.iade.unimanager_db.models.Unit;
+import pt.iade.unimanager_db.models.Views.UnitPlanView;
 import pt.iade.unimanager_db.models.exceptions.NotFoundException;
 import pt.iade.unimanager_db.repositories.UnitRepository;
 
