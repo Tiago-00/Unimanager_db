@@ -21,15 +21,15 @@ public class Course {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cur_id")
-  private int id;
+    private int id;
 
   @Column(name = "cur_nome")
-  private String name;
+    private String name;
 
   @OneToMany
   @JoinColumn(name = "pla_cur_id")
   @JsonIgnoreProperties("enrolments")
-  private List<Plan> plans = new ArrayList<>();
+    private List<Plan> plans = new ArrayList<>();
 
   public Course() {
   }

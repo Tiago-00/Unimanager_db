@@ -21,22 +21,22 @@ public class Unit {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "dis_id")
-  private int id;
+    private int id;
 
   @Column(name = "dis_nome")
-  private String name;
+    private String name;
 
   @Column(name = "dis_creditos")
-  private int credits;
+    private int credits;
 
   @OneToMany
   @JoinColumn(name = "pla_dis_id")
   @JsonIgnoreProperties("enrolments")
-  private List<Plan> plans = new ArrayList<>();
+    private List<Plan> plans = new ArrayList<>();
 
   @ManyToOne
   @JoinColumn(name = "dis_dep_id")
-  private Department department;
+    private Department department;
 
   public Unit() {
   }

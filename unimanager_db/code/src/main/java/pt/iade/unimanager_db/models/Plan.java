@@ -27,32 +27,32 @@ public class Plan {
   @Id
   @Column(name = "pla_cur_id")
   @JsonIgnore
-  private int courseId;
+    private int courseId;
 
   @ManyToOne
   @MapsId("courseId")
   @JoinColumn(name = "pla_cur_id")
   @JsonIgnoreProperties("plans")
-  private Course course;
+    private Course course;
 
   @Column(name = "pla_semestre")
-  private int semester;
+    private int semester;
 
   @Id
   @Column(name = "pla_dis_id")
   @JsonIgnore
-  private int unitId;
+    private int unitId;
 
   @ManyToOne
   @MapsId("unitId")
   @JoinColumn(name = "pla_dis_id")
   @JsonIgnoreProperties("plans")
-  private Unit unit;
+    private Unit unit;
 
   @OneToMany
   @JoinColumns({ @JoinColumn(name = "ins_pla_cur_id"), @JoinColumn(name = "ins_pla_dis_id") })
   @JsonIgnoreProperties("plan")
-  private List<Enrolment> enrolments = new ArrayList<>();
+    private List<Enrolment> enrolments = new ArrayList<>();
 
   public Plan() {
   }
