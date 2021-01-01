@@ -13,13 +13,13 @@ public class Department {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "dep_id")
-  private int id;
+    private int id;
 
   @Column(name = "dep_nome")
-  private String name;
+    private String name;
 
   @Column(name = "dep_sigla")
-  private String initials;
+    private String initials;
 
   public Department() {
   }

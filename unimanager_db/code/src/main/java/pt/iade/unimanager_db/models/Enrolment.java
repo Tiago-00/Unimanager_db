@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -16,60 +15,52 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import pt.iade.unimanager_db.models.ids.EnrolmentId;
-
-
-
 @Entity
 @Table(name = "inscricoes")
-@IdClass(EnrolmentId.class)
 public class Enrolment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ins_id")
-  private int id;
+    private int id;
 
-  @Id
   @Column(name = "ins_alu_id")
   @JsonIgnore
-  private int studentId;
+    private int studentId;
 
   @ManyToOne
   @MapsId("studentId")
   @JoinColumn(name = "ins_alu_id")
-  @JsonIgnoreProperties("enrolments")
-  private Student student;
+  @JsonIgnoreProperties({ "enrolments", "course" })
+    private Student student;
 
-  @Id
   @Column(name = "ins_pla_cur_id")
   @JsonIgnore
-  private int courseId;
+    private int courseId;
 
   @ManyToOne
   @MapsId("courseId")
   @JoinColumn(name = "ins_pla_cur_id")
   @JsonIgnoreProperties("plans")
-  private Course course;
+    private Course course;
 
-  @Id
   @Column(name = "ins_pla_dis_id")
   @JsonIgnore
-  private int unitId;
+    private int unitId;
 
   @ManyToOne
   @MapsId("unitId")
   @JoinColumn(name = "ins_pla_dis_id")
   @JsonIgnoreProperties("plans")
-  private Unit unit;
+    private Unit unit;
 
   @Column(name = "ins_dt_inscricao")
-  private LocalDate enrolmentDate;
+    private LocalDate enrolmentDate;
 
   @Column(name = "ins_dt_avaliacao")
-  private LocalDate evaluationDate;
+    private LocalDate evaluationDate;
 
   @Column(name = "ins_nota")
-  private Double grade;
+    private Double grade;
 
   public Enrolment() {
   }

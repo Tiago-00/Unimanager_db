@@ -22,31 +22,32 @@ public class Student {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "alu_id")
-  private int id;
+    private int id;
 
   @Column(name = "alu_nome")
-  private String name;
+    private String name;
 
   @Column(name = "alu_local")
-  private String address;
+    private String address;
 
   @Column(name = "alu_dnsc")
-  private LocalDate birthDate;
+    private LocalDate birthDate;
 
   @Column(name = "alu_sexo")
-  private char gender;
+    private char gender;
 
   @Column(name = "alu_email")
-  private String email;
+    private String email;
 
   @ManyToOne
   @JoinColumn(name = "alu_cur_id")
-  private Course course;
+  @JsonIgnoreProperties("plans")
+    private Course course;
 
   @OneToMany
   @JoinColumn(name = "ins_alu_id")
   @JsonIgnoreProperties("enrolments")
-  private List<Enrolment> enrolments = new ArrayList<>();
+    private List<Enrolment> enrolments = new ArrayList<>();
 
   public Student() {
   }
@@ -96,4 +97,3 @@ public class Student {
     return enrolments;
   }
 }
-
