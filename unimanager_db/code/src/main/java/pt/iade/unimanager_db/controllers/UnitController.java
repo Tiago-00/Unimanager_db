@@ -33,7 +33,7 @@ public class UnitController {
 
 public Iterable<Unit> getUnits() { 
     logger.info("Sending all units");
-    return unitRepository.findAll();
+            return unitRepository.findAll();
 }
 @GetMapping(path = "/{id:[0-9]+}",produces= MediaType.APPLICATION_JSON_VALUE)
 public Unit getUnit(@PathVariable int id) {
@@ -50,7 +50,7 @@ public Unit getUnit(@PathVariable int id) {
     public Unit saveUnit(@RequestBody Unit unit) {
     Unit savedUnit = unitRepository.save(unit);
     logger.info("Saving unit with id "+savedUnit.getId());
-        return savedUnit;
+            return savedUnit;
     }
 
 @DeleteMapping(path = "/{id:[0-9]+}",produces= MediaType.APPLICATION_JSON_VALUE)
